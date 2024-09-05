@@ -1,6 +1,5 @@
 package com.jummania.spinwheellibrary
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
@@ -16,27 +15,23 @@ class MainActivity : AppCompatActivity() {
         var rotation = wheel.rotation
         var speed = 1f
         val handler = Handler(mainLooper)
-        wheel.setColors(arrayOf(
-            Color.parseColor("#4b0081"),
-            Color.parseColor("#0000fe"),
-            Color.parseColor("#008001"),
-            Color.parseColor("#ffff00"),
-            Color.parseColor("#ff7f00"),
-            Color.parseColor("#fe0000"),
-            Color.parseColor("#9400d4")
-        ))
+        wheel.setColors(
+            "#4b0081", "#0000fe", "#008001", "#ffff00", "#ff7f00", "#fe0000", "#9400d4", "#FFFFFF"
+        )
 
         wheel.setOnClickListener {
-            wheel.animate().rotation(wheel.rotation+54000).setDuration(30000).start()
-            /*
-            handler.post {
-                rotation += speed
-                wheel.rotation = rotation
-                if (speed < 50) speed += 0.05f
-                // handler.post(this)
-            }
+            wheel.animate().rotation(wheel.rotation + 55555).setDuration(30000).start()/*
+            handler.post(object : Runnable {
+                override fun run() {
+                    rotation += speed
+                    wheel.rotation = rotation
+                    if (speed < 40)
+                        speed += 0.05f
+                    handler.post(this)
+                }
+            })
 
-             */
+               */
         }
 
     }

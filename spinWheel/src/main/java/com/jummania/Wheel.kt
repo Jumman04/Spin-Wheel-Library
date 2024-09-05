@@ -23,10 +23,10 @@ open class Wheel @JvmOverloads constructor(
     context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private var angle = 2
+    private var angle = 0
     private val paint = Paint().also { it.isAntiAlias = true }
     private val path = Path()
-    private var colors: Array<Int> = arrayOf(Color.WHITE)
+    private var colors: IntArray = intArrayOf()
 
     override fun onDraw(canvas: Canvas) {
         val centerX = width / 2f
@@ -61,23 +61,16 @@ open class Wheel @JvmOverloads constructor(
         //   canvas.drawCircle(centerX, centerY, radius / 4, paint)
     }
 
-    fun setColors(colors: Array<Int>) {
-        this.colors = colors
-        angle = colors.size
-        invalidate()
-    }
-
-    fun setColors(vararg colors: Int) {
-        for (i in colors.indices) {
-            this.colors[i] = colors[i]
-        }
+    fun setColors(vararg colorArray: Int) {
+        colors = colorArray
         angle = colors.size
         invalidate()
     }
 
     fun setColors(vararg colorArray: String) {
-        for (i in colors.indices) {
-            colors[i] = Color.parseColor(colorArray[0])
+        colors = intArrayOf()
+        for (i in colorArray.indices) {
+            colors += intArrayOf(Color.parseColor(colorArray[i]))
         }
         angle = colors.size
         invalidate()
@@ -87,7 +80,7 @@ open class Wheel @JvmOverloads constructor(
         this.angle = angle
     }
 
-    fun getColors(): Array<Int> {
+    fun getColors(): IntArray {
         return colors
     }
 
